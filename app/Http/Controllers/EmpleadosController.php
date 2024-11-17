@@ -8,25 +8,24 @@ use Illuminate\Http\Request;
 
 class EmpleadosController extends Controller
 {
-    // Endpoint para obtener un listado de proveedores
+    // Endpoint para obtener un listado de Empleado
     public function select()
     {
         try {
-            // Query para consultar proveedor
-            $proveedores = Empleados::select(
-                'proveedor.id',
-                'proveedor.nombre_proveedor',
-                'proveedor.direccion',
-                'proveedor.telefono'
+            // Query para consultar Empleado
+            $empleados = Empleados::select(
+                'empleados.id',
+                'empleados.nombre',
+                'empleados.usuario_id'
             )->get();
-            if ($proveedores->count() > 0) {
-                // Si hay proveedor se retorna el listado en un json
+            if ($empleados->count() > 0) {
+                // Si hay Empleado se retorna el listado en un json
                 return response()->json([
                     'code' => 200,
-                    'data' => $proveedores
+                    'data' => $empleados
                 ], 200);
             } else {
-                // Si hay proveedor se un mensaje
+                // Si hay Empleado se un mensaje
                 return response()->json([
                     'code' => 404,
                     'data' => 'No hay empleado'
@@ -37,13 +36,14 @@ class EmpleadosController extends Controller
         }
     }
 
-    // Endpoint para insertar un proveedor
+    // Endpoint para insertar un Empleado
     public function store(Request $request)
     {
         try {
             // Se valida que todos los campos sean requeridos
             $validacion = Validator::make($request->all(), [
-                'nombre' => 'required'
+                'nombre' => 'required',
+                'usuario_id'=> 'required',
             ]);
 
             if ($validacion->fails()) {
@@ -53,12 +53,12 @@ class EmpleadosController extends Controller
                     'data' => $validacion->messages()
                 ], 400);
             } else {
-                // Si se cumple la validación se inserta el proveedor
-                $categorias = Empleados::create($request->all());
+                // Si se cumple la validación se inserta el Empleado
+                $empleados = Empleados::create($request->all());
 
                 return response()->json([
                     'code' => 200,
-                    'data' => 'Proveedor insertado'
+                    'data' => 'Empleado insertado'
                 ], 200);
             }
         } catch (\Throwable $th) {
@@ -66,13 +66,14 @@ class EmpleadosController extends Controller
         }
     }
 
-    // Endpoint para modificar un proveedor
+    // Endpoint para modificar un Empleado
     public function update(Request $request, $id)
     {
         try {
             // Se valida que todos los campos sean requeridos
             $validacion = Validator::make($request->all(), [
-                'nombre' => 'required'
+                'nombre' => 'required',
+                'usuario_id'=> 'required',
             ]);
 
             if ($validacion->fails()) {
@@ -82,20 +83,20 @@ class EmpleadosController extends Controller
                     'data' => $validacion->messages()
                 ], 400);
             } else {
-                // Si se cumple la validación se busca el proveedor 
-                $categorias = Empleados::find($id);
-                if ($categorias) {
+                // Si se cumple la validación se busca el Empleado 
+                $empleados = Empleados::find($id);
+                if ($empleados) {
                     // Si el cliente existe se actualiza
-                    $categorias->update($request->all());
+                    $empleados->update($request->all());
                     return response()->json([
                         'code' => 200,
-                        'data' => 'Proveedor actualizado'
+                        'data' => 'Empleado actualizado'
                     ], 200);
                 } else {
-                    // Si el proveedor no existe se devuelve un mensaje
+                    // Si el Empleado no existe se devuelve un mensaje
                     return response()->json([
                         'code' => 404,
-                        'data' => 'Proveedor no encontrado'
+                        'data' => 'Empleado no encontrado'
                     ], 404);
                 }
             }
@@ -104,24 +105,24 @@ class EmpleadosController extends Controller
         }
     }
 
-    // Endpoint para eliminar un proveedor
+    // Endpoint para eliminar un Empleado
     public function delete($id)
     {
         try {
-            // Se busca el proveedor 
-            $proveedores = Empleados::find($id);
-            if ($proveedores) {
-                // Si el proveedor existe se elimina
-                $proveedores->delete($id);
+            // Se busca el Empleado 
+            $empleados = Empleados::find($id);
+            if ($empleados) {
+                // Si el Empleado existe se elimina
+                $empleados->delete($id);
                 return response()->json([
                     'code' => 200,
-                    'data' => 'Proveedor eliminado'
+                    'data' => 'Empleado eliminado'
                 ], 200);
             } else {
-                // Si el proveedor no existe se devuelve un mensaje
+                // Si el Empleado no existe se devuelve un mensaje
                 return response()->json([
                     'code' => 404,
-                    'data' => 'Proveedor no encontrado'
+                    'data' => 'Empleado no encontrado'
                 ], 404);
             }
         } catch (\Throwable $th) {
@@ -129,19 +130,18 @@ class EmpleadosController extends Controller
         }
     }
 
-    // Endpoint para buscar un proveedor
+    // Endpoint para buscar un Empleado
     public function find($id)
     {
         try {
-            // Se busca el proveedor 
-            $proveedores = Empleados::find($id);
-            if ($proveedores) {
-                // Si el proveedor existe se retornan sus datos  
+            // Se busca el Empleado 
+            $empleados = Empleados::find($id);
+            if ($empleados) {
+                // Si el Empleado existe se retornan sus datos  
                 $datos = Empleados::select(
-                    'proveedor.id',
-                    'proveedor.nombre_proveedor',
-                    'proveedor.direccion',
-                    'proveedor.telefono'
+                    'empleados.id',
+                    'empleados.nombre',
+                    'empleados.usuario_id'
                 )
                     ->where('categoria.id', '=', $id)
                     ->get();
@@ -150,10 +150,10 @@ class EmpleadosController extends Controller
                     'data' => $datos[0]
                 ], 200);
             } else {
-                // Si el proveedor no existe se devuelve un mensaje
+                // Si el Empleado no existe se devuelve un mensaje
                 return response()->json([
                     'code' => 404,
-                    'data' => 'Proveedor no encontrado'
+                    'data' => 'Empleado no encontrado'
                 ], 404);
             }
         } catch (\Throwable $th) {

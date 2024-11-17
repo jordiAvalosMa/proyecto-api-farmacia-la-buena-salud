@@ -14,10 +14,10 @@ class ClienteController extends Controller
         try {
             // Query para consultar clientes
             $clientes = Cliente::select(
-                'cliente.id',
-                'cliente.nombre',
-                'cliente.telefono',
-                'pais.nombre as fk_pais'
+                'clientes.id',
+                'clientes.nombre',
+                'clientes.direccion',
+                'clientes.telefono'
             )
                 ->join('pais', 'cliente.fk_pais', '=', 'pais.id')->get();
             if ($clientes->count() > 0) {
