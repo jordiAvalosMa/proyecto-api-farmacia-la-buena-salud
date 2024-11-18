@@ -14,6 +14,7 @@ use App\Http\Controllers\ProveedorController;
 use App\Models\DetalleOrdenesPedido;
 use App\Models\DetalleVenta;
 use App\Models\Envio;
+use App\Models\OrdenesPedido;
 
 Route::get('/user', function (Request $request) {
     return $request->user();
@@ -70,6 +71,12 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/envio/find/{id}', [Envio::class, 'find']);
     Route::delete('/envio/delete/{id}', [Envio::class, 'delete']);
 
+        // Rutas para gestionar la tabla Orden
+        Route::get('/ordenes_pedido/select', [OrdenesPedido::class, 'select']);
+        Route::post('/ordenes_pedido/store', [OrdenesPedido::class, 'store']);
+        Route::put('/ordenes_pedido/update/{id}', [OrdenesPedido::class, 'update']);
+        Route::get('/ordenes_pedido/find/{id}', [OrdenesPedido::class, 'find']);
+        Route::delete('/ordenes_pedido/delete/{id}', [OrdenesPedido::class, 'delete']);
 
     // Rutas para gestionar la tabla Pais
     // Route::get('/pais/select', [PaisController::class, 'select' ]);
