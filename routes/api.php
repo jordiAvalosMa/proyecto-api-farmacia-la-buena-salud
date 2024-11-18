@@ -11,6 +11,7 @@ use App\Http\Controllers\CategoriasController;
 use App\Http\Controllers\MarcasController;
 use App\Http\Controllers\ProductosController;
 use App\Http\Controllers\ProveedorController;
+use App\Models\DetalleOrdenesPedido;
 
 Route::get('/user', function (Request $request) {
     return $request->user();
@@ -52,6 +53,13 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::put('/proveedor/update/{id}', [ProveedorController::class, 'update']);
     Route::get('/proveedor/find/{id}', [ProveedorController::class, 'find']);
     Route::delete('/proveedor/delete/{id}', [ProveedorController::class, 'delete']);
+
+    // Rutas para gestionar la tabla Detalle_Ordenes_Pedido
+    Route::get('/detalle_ordenes_pedido/select', [DetalleOrdenesPedido::class, 'select']);
+    Route::post('/detalle_ordenes_pedido/store', [DetalleOrdenesPedido::class, 'store']);
+    Route::put('/detalle_ordenes_pedido/update/{id}', [DetalleOrdenesPedido::class, 'update']);
+    Route::get('/detalle_ordenes_pedido/find/{id}', [DetalleOrdenesPedido::class, 'find']);
+    Route::delete('/detalle_ordenes_pedido/delete/{id}', [DetalleOrdenesPedido::class, 'delete']);
 
 
 

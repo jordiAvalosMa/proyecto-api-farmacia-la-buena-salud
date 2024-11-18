@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Categorias;
-use App\Models\Marcas;
 use Illuminate\Http\Request;
 use App\Models\Productos;
 use Illuminate\Support\Facades\Validator;
@@ -21,7 +20,6 @@ class ProductosController extends Controller
                 return response()->json([
                     'code' => 200,
                     'data' => $productos,
-                    'marcas'=> Marcas::all(),
                     'categorias'=> Categorias::all()
                 ], 200);
             } else {

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Empleados;
+use App\Models\User;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 
@@ -43,7 +44,7 @@ class EmpleadosController extends Controller
             // Se valida que todos los campos sean requeridos
             $validacion = Validator::make($request->all(), [
                 'nombre' => 'required',
-                'usuario_id'=> 'required',
+                'usuario_id'=>  User::all(),
             ]);
 
             if ($validacion->fails()) {
@@ -73,7 +74,7 @@ class EmpleadosController extends Controller
             // Se valida que todos los campos sean requeridos
             $validacion = Validator::make($request->all(), [
                 'nombre' => 'required',
-                'usuario_id'=> 'required',
+                'usuario_id'=>  User::all(),
             ]);
 
             if ($validacion->fails()) {
