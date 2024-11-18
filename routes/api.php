@@ -15,6 +15,7 @@ use App\Models\DetalleOrdenesPedido;
 use App\Models\DetalleVenta;
 use App\Models\Envio;
 use App\Models\OrdenesPedido;
+use App\Models\Roles;
 use App\Models\Ventas;
 
 Route::get('/user', function (Request $request) {
@@ -79,12 +80,21 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/ordenes_pedido/find/{id}', [OrdenesPedido::class, 'find']);
     Route::delete('/ordenes_pedido/delete/{id}', [OrdenesPedido::class, 'delete']);
 
-        // Rutas para gestionar la tabla Orden
-        Route::get('/ventas/select', [Ventas::class, 'select']);
-        Route::post('/ventas/store', [Ventas::class, 'store']);
-        Route::put('/ventas/update/{id}', [Ventas::class, 'update']);
-        Route::get('/ventas/find/{id}', [Ventas::class, 'find']);
-        Route::delete('/ventas/delete/{id}', [Ventas::class, 'delete']);
+    // Rutas para gestionar la tabla Ventas
+    Route::get('/ventas/select', [Ventas::class, 'select']);
+    Route::post('/ventas/store', [Ventas::class, 'store']);
+    Route::put('/ventas/update/{id}', [Ventas::class, 'update']);
+    Route::get('/ventas/find/{id}', [Ventas::class, 'find']);
+    Route::delete('/ventas/delete/{id}', [Ventas::class, 'delete']);
+
+    // Rutas para gestionar la tabla Roles
+    Route::get('/roles/select', [Roles::class, 'select']);
+    Route::post('/roles/store', [Roles::class, 'store']);
+    Route::put('/roles/update/{id}', [Roles::class, 'update']);
+    Route::get('/roles/find/{id}', [Roles::class, 'find']);
+    Route::delete('/roles/delete/{id}', [Roles::class, 'delete']);
+
+
 
     // Rutas para gestionar la tabla Pais
     // Route::get('/pais/select', [PaisController::class, 'select' ]);
