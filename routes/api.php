@@ -33,13 +33,6 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/categorias/find/{id}', [CategoriasController::class, 'find']);
     Route::delete('/categorias/delete/{id}', [CategoriasController::class, 'delete']);
 
-    // Rutas para gestionar la tabla Marcas
-    Route::get('/marcas/select', [MarcasController::class, 'select']);
-    Route::post('/marcas/store', [MarcasController::class, 'store']);
-    Route::put('/marcas/update/{id}', [MarcasController::class, 'update']);
-    Route::get('/marcas/find/{id}', [MarcasController::class, 'find']);
-    Route::delete('/marcas/delete/{id}', [MarcasController::class, 'delete']);
-
     // Rutas para gestionar la tabla Productos
     Route::get('/productos/select', [ProductosController::class, 'select']);
     Route::post('/productos/store', [ProductosController::class, 'store']);
