@@ -13,6 +13,7 @@ use App\Http\Controllers\ProductosController;
 use App\Http\Controllers\ProveedorController;
 use App\Models\DetalleOrdenesPedido;
 use App\Models\DetalleVenta;
+use App\Models\Envio;
 
 Route::get('/user', function (Request $request) {
     return $request->user();
@@ -21,11 +22,11 @@ Route::get('/user', function (Request $request) {
 // Rutas protegidas
 Route::middleware('auth:sanctum')->group(function () {
     // Rutas para gestionar la tabla Cliente
-    Route::get('/cliente/select', [ClienteController::class, 'select' ]);
-    Route::post('/cliente/store', [ClienteController::class, 'store' ]);
-    Route::put('/cliente/update/{id}', [ClienteController::class, 'update' ]);
-    Route::delete('/cliente/delete/{id}', [ClienteController::class, 'delete' ]);
-    Route::get('/cliente/find/{id}', [ClienteController::class, 'find' ]);
+    Route::get('/cliente/select', [ClienteController::class, 'select']);
+    Route::post('/cliente/store', [ClienteController::class, 'store']);
+    Route::put('/cliente/update/{id}', [ClienteController::class, 'update']);
+    Route::delete('/cliente/delete/{id}', [ClienteController::class, 'delete']);
+    Route::get('/cliente/find/{id}', [ClienteController::class, 'find']);
 
     // Rutas para gestionar la tabla Categorias
     Route::get('/categorias/select', [CategoriasController::class, 'select']);
@@ -62,6 +63,12 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/detalle_venta/find/{id}', [DetalleVenta::class, 'find']);
     Route::delete('/detalle_venta/delete/{id}', [DetalleVenta::class, 'delete']);
 
+    // Rutas para gestionar la tabla Envio
+    Route::get('/envio/select', [Envio::class, 'select']);
+    Route::post('/envio/store', [Envio::class, 'store']);
+    Route::put('/envio/update/{id}', [Envio::class, 'update']);
+    Route::get('/envio/find/{id}', [Envio::class, 'find']);
+    Route::delete('/envio/delete/{id}', [Envio::class, 'delete']);
 
 
     // Rutas para gestionar la tabla Pais
