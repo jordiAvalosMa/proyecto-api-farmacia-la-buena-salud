@@ -14,7 +14,7 @@ class ProductosController extends Controller
     {
         try {
             // Query para consultar producto
-            $productos = Productos::with('marca','categoria')->get();
+            $productos = Productos::with('categoria')->get();
             if ($productos->count() > 0) {
                 // Si hay producto se retorna el listado en un json
                 return response()->json([
@@ -40,10 +40,10 @@ class ProductosController extends Controller
         try {
             // Se valida que todos los campos sean requeridos
             $validacion = Validator::make($request->all(), [
-                'nombre' => 'required',
+                'nombre_producto' => 'required',
                 'precio' => 'required',
-                'fk_marca' => 'required',
-                'fk_categoria' => 'required'
+                'stock' => 'required',
+                'categoria_id' => 'required',
             ]);
 
             if ($validacion->fails()) {
@@ -72,10 +72,10 @@ class ProductosController extends Controller
         try {
             // Se valida que todos los campos sean requeridos
             $validacion = Validator::make($request->all(), [
-                'nombre' => 'required',
+                'nombre_producto' => 'required',
                 'precio' => 'required',
-                'fk_marca' => 'required',
-                'fk_categoria' => 'required'
+                'stock' => 'required',
+                'categoria_id' => 'required',
             ]);
 
             if ($validacion->fails()) {

@@ -10,9 +10,9 @@ class Productos extends Model
 {
     use HasFactory;
     protected $table = 'productos'; // Nombre de la tabla
-    protected $fillable = ['id', 'nombre_producto', 'precio', 'stock', 'fk_categoria'];
+    protected $fillable = ['id', 'nombre_producto', 'precio', 'stock', 'categoria_id'];
 
     public function categoria():HasOne {
-        return $this->hasOne(Categorias::class,"id","fk_categoria");
+        return $this->hasOne(Categorias::class,"id","nombre_categoria");
     }
 }
