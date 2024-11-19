@@ -15,8 +15,8 @@ class CategoriasController extends Controller
         try {
             // Query para consultar categorias
             $categorias = Categorias::select(
-                'categoria.id',
-                'categoria.nombre'
+                'categorias.id',
+                'categorias.nombre_categoria'
             )->get();
             if ($categorias->count() > 0) {
                 // Si hay categorias se retorna el listado en un json
@@ -42,7 +42,7 @@ class CategoriasController extends Controller
         try {
             // Se valida que todos los campos sean requeridos
             $validacion = Validator::make($request->all(), [
-                'nombre' => 'required'
+                'nombre_categoria' => 'required'
             ]);
 
             if ($validacion->fails()) {
@@ -71,7 +71,7 @@ class CategoriasController extends Controller
         try {
             // Se valida que todos los campos sean requeridos
             $validacion = Validator::make($request->all(), [
-                'nombre' => 'required'
+                'nombre_categoria' => 'required'
             ]);
 
             if ($validacion->fails()) {
@@ -137,10 +137,10 @@ class CategoriasController extends Controller
             if ($categorias) {
                 // Si el categorias existe se retornan sus datos  
                 $datos = Categorias::select(
-                    'categoria.id',
-                    'categoria.nombre'
+                    'categorias.id',
+                    'categorias.nombre_categoria'
                 )
-                    ->where('categoria.id', '=', $id)
+                    ->where('categorias.id', '=', $id)
                     ->get();
                 return response()->json([
                     'code' => 200,
@@ -150,7 +150,7 @@ class CategoriasController extends Controller
                 // Si el categorias no existe se devuelve un mensaje
                 return response()->json([
                     'code' => 404,
-                    'data' => 'Cliente no encontrada'
+                    'data' => 'Categoria no encontrada'
                 ], 404);
             }
         } catch (\Throwable $th) {

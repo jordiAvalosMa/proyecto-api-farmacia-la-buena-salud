@@ -4,11 +4,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 //para los controladores
-use App\Http\Controllers\PaisController;
 use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CategoriasController;
-use App\Http\Controllers\MarcasController;
 use App\Http\Controllers\ProductosController;
 use App\Http\Controllers\ProveedorController;
 use App\Models\DetalleOrdenesPedido;

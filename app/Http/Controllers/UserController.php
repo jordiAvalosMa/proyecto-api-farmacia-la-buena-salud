@@ -17,6 +17,7 @@ class UserController extends Controller
             'name' => 'required',
             'email' => 'required|unique:users',
             'password' => 'required',
+            'rol_id'=> 'required',
             ]);
             if($validacion->fails()){
                 // Si la validación no se cumple, se retornan los mensajes de error

@@ -143,7 +143,7 @@ class ProveedorController extends Controller
                     'proveedor.direccion',
                     'proveedor.telefono'
                 )
-                    ->where('categoria.id', '=', $id)
+                    ->where('proveedor.id', '=', $id)
                     ->get();
                 return response()->json([
                     'code' => 200,
