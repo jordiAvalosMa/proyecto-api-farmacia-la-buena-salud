@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 
 class CategoriasController extends Controller
-{    
+{
     // Endpoint para obtener un listado de categorias
     public function select()
     {
@@ -81,7 +81,7 @@ class CategoriasController extends Controller
                     'data' => $validacion->messages()
                 ], 400);
             } else {
-                // Si se cumple la validación se busca el marcas 
+                // Si se cumple la validación se busca el marcas
                 $categorias = Categorias::find($id);
                 if ($categorias) {
                     // Si el cliente existe se actualiza
@@ -107,7 +107,7 @@ class CategoriasController extends Controller
     public function delete($id)
     {
         try {
-            // Se busca el cliente 
+            // Se busca el cliente
             $cliente = Categorias::find($id);
             if ($cliente) {
                 // Si el categorias existe se elimina
@@ -132,7 +132,7 @@ class CategoriasController extends Controller
     public function find($id)
     {
         try {
-            // Se busca el categorias 
+            // Se busca el categorias
             $categorias = Categorias::find($id);
             if ($categorias) {
                 // Si el categorias existe se retornan sus datos  

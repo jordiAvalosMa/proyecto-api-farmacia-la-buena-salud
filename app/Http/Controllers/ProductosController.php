@@ -85,7 +85,7 @@ class ProductosController extends Controller
                     'data' => $validacion->messages()
                 ], 400);
             } else {
-                // Si se cumple la validación se busca el producto 
+                // Si se cumple la validación se busca el producto
                 $productos = Productos::find($id);
                 if ($productos) {
                     // Si el producto existe se actualiza
@@ -111,7 +111,7 @@ class ProductosController extends Controller
     public function delete($id)
     {
         try {
-            // Se busca el producto 
+            // Se busca el producto
             $productos = Productos::find($id);
             if ($productos) {
                 // Si el producto existe se elimina
@@ -136,7 +136,7 @@ class ProductosController extends Controller
     public function find($id)
     {
         try {
-            // Se busca el producto 
+            // Se busca el producto
             $productos = Productos::where('id',$id)->with('marca','categoria')->first();
             if ($productos) {
                 return response()->json([
